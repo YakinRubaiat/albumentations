@@ -15,7 +15,7 @@ from albumentations import RandomCrop, PadIfNeeded, VerticalFlip, HorizontalFlip
     JpegCompression, HueSaturationValue, RGBShift, Blur, MotionBlur, MedianBlur, \
     GaussNoise, CLAHE, ChannelShuffle, InvertImg, IAAEmboss, IAASuperpixels, IAASharpen, IAAAdditiveGaussianNoise, \
     IAAPiecewiseAffine, IAAPerspective, Cutout, Normalize, ToFloat, FromFloat, RandomSizedCrop, RandomCropNearBBox, \
-    RandomBrightnessContrast, RandomSnow, RandomRain, RandomFog
+    RandomBrightnessContrast, RandomSnow, RandomRain, RandomFog, RandomSunFlare
 
 
 @pytest.mark.parametrize(['augmentation_cls', 'params'], [
@@ -37,6 +37,7 @@ from albumentations import RandomCrop, PadIfNeeded, VerticalFlip, HorizontalFlip
     [RandomSnow, {}],
     [RandomRain, {}],
     [RandomFog, {}],
+    [RandomSunFlare, {}],
 ])
 def test_image_only_augmentations(augmentation_cls, params, image, mask):
     aug = augmentation_cls(p=1, **params)
@@ -64,6 +65,7 @@ def test_image_only_augmentations(augmentation_cls, params, image, mask):
     [RandomSnow, {}],
     [RandomRain, {}],
     [RandomFog, {}],
+    [RandomSunFlare, {}],
 ])
 def test_image_only_augmentations_with_float_values(augmentation_cls, params, float_image, mask):
     aug = augmentation_cls(p=1, **params)
@@ -182,6 +184,7 @@ def test_torch_to_tensor_augmentations(image, mask):
     [RandomSnow, {}],
     [RandomRain, {}],
     [RandomFog, {}],
+    [RandomSunFlare, {}],
 ])
 def test_augmentations_wont_change_input(augmentation_cls, params, image, mask):
     image_copy = image.copy()
@@ -316,6 +319,7 @@ def test_augmentations_wont_change_shape_grayscale(augmentation_cls, params, ima
     [RandomSnow, {}],
     [RandomRain, {}],
     [RandomFog, {}],
+    [RandomSunFlare, {}],
 ])
 def test_augmentations_wont_change_shape_rgb(augmentation_cls, params, image, mask):
     aug = augmentation_cls(p=1, **params)
